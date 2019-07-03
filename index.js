@@ -1,17 +1,19 @@
 var http = require('http');
+var fs = require('fs');
+var path = require('path');
+
+var indexRouter = require('./routers/index');
 
 var hostname = 'localhost';
 var port = 6969;
+var router = new indexRouter();
 
 
 //req = request
 //res = respone
-var server = http.createServer((req,res) => {
-    console.log(req.headers);
-    res.writeHead(200, {
-        'Content-Type' : 'text/html'
-    });
-    res.end('<h1> Hello MTF </h1>');
+var server = http.createServer(function(req, res) {
+    console.log('Request for ' + req.url + ' by method ' + req.method);
+    router.routing(req,res);
 })
 
 server.listen(port,hostname,() => {
