@@ -4,6 +4,9 @@ var path = require('path');
 
 var indexRouter = require('./routers/mainRouter');
 
+var db = require('./database/mainDatabase');
+db.users.connect();
+
 var hostname = 'localhost';
 var port = 6969;
 var router = new indexRouter();
