@@ -6,9 +6,9 @@ class Router {
     routing(req,res) {
       if (req.method == 'GET') {
         var fileUrl;
-        if (req.url=='/') fileUrl = '/main.html';
+        if (req.url=='/') fileUrl = '/main';
         else fileUrl = req.url;
-        var filePath = path.resolve('./views'+fileUrl);
+        var filePath = path.resolve('./views'+fileUrl+'.html');
         var fileExt = path.extname(filePath); //file extesion
         if (fileExt == '.html') {
           fs.exists(filePath, function(exists) {
