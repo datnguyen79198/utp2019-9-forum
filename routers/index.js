@@ -27,6 +27,16 @@ class Router {
           res.end('<h1> Error 404: ' + fileUrl + ' not a HTML file</h1>');
         }
       }
+      else if (req.method == 'POST') {
+          if (req.url == '/signup') {
+              var reg = require('./signup');
+              reg.Signup(req,res);
+          }
+          else if (req.url == '/login') {
+              var auth = require('./login');
+              auth.Login(req,res);
+          }
+      }
       else {
         res.writeHead(404, {'Content-Type' : 'text/html'});
         res.end('<h1> Error 404: ' + req.method + ' not supported</h1>');
