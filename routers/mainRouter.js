@@ -9,23 +9,9 @@ class Router {
         if (req.url=='/') fileUrl = '/main';
         else fileUrl = req.url;
         var filePath = path.resolve('./views'+fileUrl+'.html');
-        var fileExt = path.extname(filePath); //file extesion
-        if (fileExt == '.html') {
-          fs.exists(filePath, function(exists) {
-              //function(exists) is callback function
-              if (!exists) {
-                res.writeHead(404, {'Content-Type' : 'text/html'});
-                res.end('<h1> Error 404: ' + fileUrl + ' not found</h1>');
-                return;
-              }
-              res.writeHead(200, {'Content-Type' : 'text/html'});
-              fs.createReadStream(filePath).pipe(res);
-            });
-          }
-        else {
-          res.writeHead(404, {'Content-Type' : 'text/html'});
-          res.end('<h1> Error 404: ' + fileUrl + ' not a HTML file</h1>');
-        }
+
+        var sendMethod = require('./sendResponse');
+        sendMethod.sendResponse(filePath,res,'text/html');
       }
       else if (req.method == 'POST') {
           if (req.url == '/signup') {

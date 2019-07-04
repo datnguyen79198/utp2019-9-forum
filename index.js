@@ -2,7 +2,7 @@ var http = require('http');
 var fs = require('fs');
 var path = require('path');
 
-var indexRouter = require('./routers/index');
+var indexRouter = require('./routers/mainRouter');
 
 var hostname = 'localhost';
 var port = 6969;
