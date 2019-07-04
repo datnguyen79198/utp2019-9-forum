@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang = "en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> Login </title>
+
+    <style type="text/css">
+      input[type=text] {
+        width : 50%;
+      }
+      input[type=password] {
+        width : 50%;
+      }
+      label {
+        padding : 5px;
+      }
+      .label {text-align: right}
+      .error {color: red}
+    </style>
+
+    <!-- Latest compiled and minified CSS of Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <body>
+        <nav class = "navbar navbar-inverse">
+            <div class = "container">
+
+                <div class = "navbar-header">
+                    <a class="navbar-brand" href="#">ROZ Forum</a>
+                </div>
+
+                <ul class = "nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                </ul>
+
+            </div>
+        </nav>
+        <form method = "post" style = "padding : 5px; margin-left : 5%">
+            <h2>Let's login</h2>
+
+            <label for = "inputUserName">Username</label>
+            <input type = "text" id = "inputUserName" class = "form-control" name = "username" placeholder="Username" required autofocus>
+
+            <label for = "inputPassword">Password</label>
+            <input type = "password" id = "inputPassword" class = "form-control" name = "password" placeholder="Password" required>
+
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"> Remember me
+              </label>
+            </div>
+
+            <button type = "button" class = "btn btn-primary" type = "submit" style = "margin-top: 1%">Login</button>
+            <a href = "/signup.html" class = "btn btn-primary" style = "margin-top: 1%">Don't have account?</a>
+
+        </form>
+    </body>
+
+</html>
