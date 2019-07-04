@@ -9,7 +9,6 @@ exports.checkBody = (req,res) => {
             if (data!=null) body+=data;
         })
         .on('end',() => {
-            console.log(body);
             try {
                 if (body) {
                   body = qs.parse(body);

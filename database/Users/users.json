@@ -1,3 +1,9 @@
 {
-    "Users": []
+    "Users": [
+        {
+            "username": "nguyendat",
+            "password": "thanhdat1",
+            "email": "connhanguoita98@gmail.com"
+        }
+    ]
 }
