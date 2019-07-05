@@ -1,5 +1,6 @@
 var utils = require('./utils');
 var db = require('../database/mainDatabase');
+var sendMethod = require('./sendResponse');
 
 exports.Signup = (req,res) => {
     utils.checkBody(req,res).then(result => {
@@ -9,7 +10,18 @@ exports.Signup = (req,res) => {
           db.sessions.createSession(result.username).then(cookie => {
               console.log('done add new session to database');
               console.log(cookie);
-          });
-      });
+              sendMethod.sendResponse('./views/welcome.html',res,cookies=cookie, redirect = '/welcome.html');
+          })
+          .catch(err => {
+              console.log(err);
+              res.statusCode = 400;
+              res.end('Something go wrong');
+          })
+        });
+    },
+    err => {
+      console.log(err);
+      res.statusCode = 400;
+      res.end('Something go wrong');
     });
 }
