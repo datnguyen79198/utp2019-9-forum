@@ -1,5 +1,6 @@
-alert(document.cookie);
-if (document.cookie == '/') document.getElementById('displayUsername').innerHTML = "You are not login!";
+if (document.cookie == '/') {
+    document.getElementById('displayUsername').innerHTML = "You are not login!";
+}
 else {
     var txt = document.cookie.split(';');
     var name;
