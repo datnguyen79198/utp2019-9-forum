@@ -13,6 +13,6 @@ else {
 
     var login = name.split('=')[1];
     document.getElementById('displayUsername').innerHTML = 'Welcome ' + login;
-    document.getElementById('switchNavTab').innerHTML= '<li><a href="./views/newpost.html">Create new post</a></li><li><a href="./views/myinfo.html">My info</a></li><li><a href="./views/logout.html">Log out</a></li>';
+    document.getElementById('switchNavTab').innerHTML= '<li><a href="./views/newpost.html">Create new post</a></li><li><a href="./views/myinfo.html">My info</a></li><li><a href="/logout">Log out</a></li>';
 
 }

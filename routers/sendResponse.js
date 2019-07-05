@@ -2,13 +2,11 @@ var fs = require('fs');
 var path = require('path');
 
 exports.sendResponse = (filePath, res, content, cookies, redirect) => {
-  console.log(filePath);
   if (fs.existsSync(path.resolve('', filePath))) {
       html = fs.readFileSync(filePath);
       header = {
         'Content-Type': content
       };
-      console.log(content);
       if (cookies != null) header['Set-Cookie'] = cookies;
 
       if (redirect) {

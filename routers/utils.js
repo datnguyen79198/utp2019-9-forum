@@ -22,3 +22,20 @@ exports.checkBody = (req,res) => {
         })
     })
 };
+
+exports.checkCookie = req => {
+    var cookie = req.headers.cookie;
+    var tmp = {};
+    cookie.split(';').forEach(st => {
+        var a = st.split('=');
+        if (a[0] === ' session_id' || a[0] === ' username') {
+            var lol = a[0].substr(1);
+            console.log(lol + ' ' +a[1]);
+            tmp[lol] = a[1];
+        }
+    })
+
+    console.log("Session to list: " + tmp['username'] + ' ' + tmp['session_id']);
+    return tmp;
+
+};
