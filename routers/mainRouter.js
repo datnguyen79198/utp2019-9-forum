@@ -7,8 +7,9 @@ class Router {
       if (req.method == 'GET') {
         var fileUrl;
         if (req.url=='/') fileUrl = './views/main.html';
-        else fileUrl = '.'+req.url;
-
+        else if (req.url[0]!='.') fileUrl = '.'+req.url;
+        else fileUrl = req.url;
+        console.log(fileUrl);
         var sendMethod = require('./sendResponse');
 
         var filePath = path.resolve(fileUrl);
