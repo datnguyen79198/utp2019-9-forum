@@ -6,19 +6,25 @@ class Router {
     routing(req,res) {
       if (req.method == 'GET') {
         var fileUrl;
-        if (req.url=='/') fileUrl = '/main';
-        else fileUrl = req.url;
-        var filePath = path.resolve('./views'+fileUrl+'.html');
+        if (req.url=='/') fileUrl = './views/main.html';
+        else fileUrl = '.'+req.url;
 
         var sendMethod = require('./sendResponse');
-        sendMethod.sendResponse(filePath,res,'text/html');
+
+        var filePath = path.resolve(fileUrl);
+
+        var fileExt = path.extname(filePath);
+        console.log(fileExt);
+        if (fileExt == '.js') sendMethod.sendResponse(filePath,res,'text/javascript',null,null);
+        else if (fileExt == '.css') sendMethod.sendResponse(filePath,res,'text/css',null,null);
+        else sendMethod.sendResponse(filePath,res,'text/html',null,null);
       }
       else if (req.method == 'POST') {
-          if (req.url == '/signup') {
+          if (req.url == './views/signup.html') {
               var reg = require('./signup');
               reg.Signup(req,res);
           }
-          else if (req.url == '/login') {
+          else if (req.url == './views/login.html') {
               var auth = require('./login');
               auth.Login(req,res);
           }
