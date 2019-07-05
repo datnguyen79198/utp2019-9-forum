@@ -10,7 +10,7 @@ class User {
     }
 }
 
-var contain = (db,username) => {
+var findUser = (db,username) => {
     var user;
     for (var i = 0; i < db.Users.length; i++)
       if (db.Users[i].username == username)
@@ -42,7 +42,7 @@ exports.addUser = (username,password,email) => {
             } else {
                 db = JSON.parse(db);
 
-                if (!contain(db,username)) {
+                if (!findUser(db,username)) {
                     var newUser = new User(username,password,email);
                     db.Users.push(newUser);
                     db_to_json = JSON.stringify(db,'',4);
@@ -60,5 +60,26 @@ exports.addUser = (username,password,email) => {
             }
         });
     });
+};
 
+exports.getUser = (username,password) => {
+    return new Promise((resolve,reject) => {
+        fs.readFile(dbPath,'utf-8',(err,db) => {
+            if (err) {
+                console.log('Error when request to Users database');
+                reject(err);
+            } else {
+                db = JSON.parse(db);
+                var current_user = findUser(db,username);
+
+                if (current_user) {
+                    console.log(current_user.password + ' ' + password);
+                    if (current_user.password == password) resolve(current_user);
+                    else reject('Password not correct');
+                } else {
+                    reject('No such this user');
+                }
+            }
+        });
+    });
 };

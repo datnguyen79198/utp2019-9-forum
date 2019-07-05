@@ -50,7 +50,7 @@ exports.createSession = (username) => {
                         reject(err);
                     } else {
                         console.log('Session created')
-                        var location = 'session_id=' + session.id + ', username=' + session.username + ',Path = /';
+                        var location = 'session_id=' + session.id + '; username=' + session.username + ';Path = /';
                         resolve([location]);
                     }
                 })
