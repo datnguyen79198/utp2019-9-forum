@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> New Post </title>
+
+    <!-- Latest compiled and minified CSS of Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+  </head>
+
+  <body>
+    <nav class = "navbar navbar-inverse">
+        <div class = "container">
+
+            <div class = "navbar-header">
+                <a class="navbar-brand" href="#">ROZ Forum</a>
+            </div>
+
+            <ul class = "nav navbar-nav">
+                <li class="active"><a href="/">Home</a></li>
+            </ul>
+
+            <!-- TODO -->
+            <!-- I will set 2 status of page when login and not login -->
+            <a class="navbar-brand" href="#" style = "margin-left: 1%" id = "displayUsername"></a>
+
+        </div>
+    </nav>
+
+    <div class = "container">
+        <div class = "row">
+            <form method = "post">
+                <h2>Title:</h2>
+                <input type = "text" name = "title" size = "100"><br><br>
+                <h2>Blog entry:</h2>
+                <textarea name = "blogEntry" cols = "101" rows = "10"></textarea><br><br>
+
+                <h2>Tags</h2>
+		            <p><em>Comma separated, please</em></p>
+		            <input type="text" name="tags" size="100"><br>
+		            <br><hr>
+		            <button class = "btn btn-primary" type = "submit">Post</button>
+            </form>
+        </div>
+    </div>
+
+
+  <script src = "../scripts/newpostScripts.js"></script>
+
+  </body>
+
+</html>
