@@ -26,10 +26,13 @@ exports.checkBody = (req,res) => {
 exports.checkCookie = req => {
     var cookie = req.headers.cookie;
     var tmp = {};
+    console.log(cookie);
     cookie.split(';').forEach(st => {
         var a = st.split('=');
-        if (a[0] === ' session_id' || a[0] === ' username') {
-            var lol = a[0].substr(1);
+        if (a[0] === ' session_id' || a[0] === ' username' || a[0] === 'username' || a[0] === 'session_id') {
+            var lol;
+            if (a[0][0]==" ") lol = a[0].substr(1);
+            else lol = a[0];
             console.log(lol + ' ' +a[1]);
             tmp[lol] = a[1];
         }

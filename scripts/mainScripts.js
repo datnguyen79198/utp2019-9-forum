@@ -1,4 +1,4 @@
-if (document.cookie == '/') {
+if (document.cookie == '/' || document.cookie == "") {
     document.getElementById('displayUsername').innerHTML = "You are not login!";
     document.getElementById('switchNavTab').innerHTML= '<li><a href="./views/login.html">Login</a></li><li><a href="./views/signup.html">Sign Up</a></li>';
 }
