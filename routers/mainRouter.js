@@ -33,6 +33,10 @@ class Router {
               var auth = require('./login');
               auth.Login(req,res);
           }
+          else if (fileUrl == './views/newpost.html') {
+              var post = require('./thread');
+              post.createThread(req,res);
+          }
       }
       else {
         res.writeHead(404, {'Content-Type' : 'text/html'});
