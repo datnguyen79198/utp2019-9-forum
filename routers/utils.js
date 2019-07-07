@@ -26,7 +26,6 @@ exports.checkBody = (req,res) => {
 exports.checkCookie = req => {
     var cookie = req.headers.cookie;
     var tmp = {};
-    console.log(cookie);
     cookie.split(';').forEach(st => {
         var a = st.split('=');
         if (a[0] === ' session_id' || a[0] === ' username' || a[0] === 'username' || a[0] === 'session_id') {
