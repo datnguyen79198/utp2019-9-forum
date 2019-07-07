@@ -26,7 +26,33 @@ var xmlHttp = new XMLHttpRequest();
 xmlHttp.onreadystatechange = function() {
     if (this.readyState==4 && this.status==200) {
         var myDB = JSON.parse(this.responseText);
-        document.getElementById("displayThread").innerHTML = this.responseText;
+        var thread;
+        for (var i=0;i<Object.keys(myDB.Threads).length;i++) {
+            thread = document.createElement('tr');
+            var tags = document.createElement('th');
+            tags.setAttribute('width',"10%");
+            tags.innerHTML = myDB.Threads[i].tags;
+            thread.appendChild(tags);
+            var title = document.createElement('th');
+            title.setAttribute('width',"60%");
+            title.setAttribute('style',"background-color : #E5EEFD");
+            title.innerHTML = myDB.Threads[i].title;
+            thread.appendChild(title);
+            var vote = document.createElement('th');
+            vote.setAttribute('width',"10%");
+            vote.innerHTML = "this is vote";
+            thread.appendChild(vote);
+            var cmt = document.createElement('th');
+            cmt.setAttribute('width',"10%");
+            cmt.setAttribute('style',"background-color : #E5EEFD");
+            cmt.innerHTML = "this is comments";
+            thread.appendChild(cmt);
+            var author = document.createElement('th');
+            author.setAttribute('width',"10%");
+            author.innerHTML = myDB.Threads[i].author;
+            thread.appendChild(author);
+            document.getElementById("displayThread").appendChild(thread);
+        }
     }
 };
 
