@@ -22,6 +22,10 @@ class Router {
                 var out = require('./logout');
                 out.Logout(req,res);
             }
+            else if (req.url == '/threads') {
+                var post = require('./thread');
+                post.getThreads(req,res);
+            }
         }
       }
       else if (req.method == 'POST') {

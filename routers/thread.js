@@ -22,3 +22,23 @@ exports.createThread = (req,res) => {
       res.end('Something go wrong');
     });
 }
+
+exports.getThreads = (req,res) => {
+    utils.checkBody(req,res).then(result => {
+        db.threads.getThreads().then(result => {
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            res.write(JSON.stringify(result));
+            res.end();
+        })
+        .catch(err => {
+            console.log(err);
+            res.statusCode = 400;
+            res.end('Something go wrong');
+        });
+    },
+    err => {
+      console.log(err);
+      res.statusCode = 400;
+      res.end('Something go wrong');
+    });
+};

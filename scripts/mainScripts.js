@@ -5,7 +5,6 @@ if (document.cookie == '/' || document.cookie == "") {
 }
 else {
     var txt = document.cookie.split(';');
-    console.log(txt);
     var name="";
 
     for (var i=0;i<txt.length;i++) {
@@ -13,7 +12,6 @@ else {
         if (txt[i].indexOf("username") !=-1) name = txt[i];
     }
     var login = name.split('=')[1];
-    console.log(login);
     if (login!=undefined) {
       document.getElementById('displayUsername').innerHTML = 'Welcome ' + login;
       document.getElementById('switchNavTab').innerHTML= '<li><a href="./views/newpost.html">Create new post</a></li><li><a href="./views/myinfo.html">My info</a></li><li><a href="/logout">Log out</a></li>';
@@ -22,3 +20,15 @@ else {
       document.getElementById('switchNavTab').innerHTML= '<li><a href="./views/login.html">Login</a></li><li><a href="./views/signup.html">Sign Up</a></li>';
     }
 }
+
+var xmlHttp = new XMLHttpRequest();
+
+xmlHttp.onreadystatechange = function() {
+    if (this.readyState==4 && this.status==200) {
+        var myDB = JSON.parse(this.responseText);
+        document.getElementById("displayThread").innerHTML = this.responseText;
+    }
+};
+
+xmlHttp.open("GET", "/threads");
+xmlHttp.send();

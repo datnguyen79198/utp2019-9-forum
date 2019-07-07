@@ -53,3 +53,17 @@ exports.createThread = (author,title,entry,tags) => {
         });
     });
 }
+
+exports.getThreads = () => {
+    return new Promise((resolve,reject) => {
+        fs.readFile(dbPath,'utf-8',(err,db) => {
+            if (err) {
+              console.log('Error when request to Users database');
+              reject(err);
+            } else {
+                db = JSON.parse(db);
+                resolve(db);
+            }
+        });
+    });
+}
