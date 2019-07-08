@@ -1,5 +1,57 @@
-<body>
-    <p>
-      this is thread views
-      </p>
-</body>
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> Thread view </title>
+
+    <style>
+        table,th,td {
+            border: 1px solid white;
+        }
+    </style>
+
+    <!-- Latest compiled and minified CSS of Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  </head>
+
+  <body>
+    <nav class = "navbar navbar-inverse">
+        <div class = "container">
+
+            <div class = "navbar-header">
+                <a class="navbar-brand" href="#">ROZ Forum</a>
+            </div>
+
+            <ul class = "nav navbar-nav">
+                <li class="active"><a href="/">Home</a></li>
+            </ul>
+
+            <!-- TODO -->
+            <!-- I will set 2 status of page when login and not login -->
+            <a class="navbar-brand" href="#" style = "margin-left: 1%" id = "displayUsername"></a>
+
+            <div id = "navbar" class = "navbar-right">
+                <ul class = "nav navbar-nav" id = "switchNavTab">
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+  <table width = "80%" style = "margin-left: 10%; margin-top: 2%">
+      <tr style = "background-color: #2D90EC; color: white">
+          <th> View thread </th>
+      </tr>
+      <table width = "80%" style = "margin-left: 10%" id = "displayThread"></table>
+  </table>
+
+  <script src = "../scripts/threadScripts.js"></script>
+
+  </body>
+
+</html>
