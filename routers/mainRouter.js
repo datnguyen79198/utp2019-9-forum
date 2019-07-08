@@ -18,6 +18,7 @@ class Router {
         else if (fileExt == '.css') sendMethod.sendResponse(filePath,res,'text/css',null,null);
         else if (fileExt == '.html') sendMethod.sendResponse(filePath,res,'text/html',null,null);
         else {
+            var tmp = req.url.split('/')[1];
             if (req.url == '/logout') {
                 var out = require('./logout');
                 out.Logout(req,res);
@@ -25,6 +26,10 @@ class Router {
             else if (req.url == '/threads') {
                 var post = require('./thread');
                 post.getThreads(req,res);
+            } else if (tmp == 'thread') {
+                fileUrl = './views/thread.html';
+                filePath = path.resolve(fileUrl);
+                sendMethod.sendResponse(filePath,res,'text/html',null,null);
             }
         }
       }

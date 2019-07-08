@@ -36,7 +36,10 @@ xmlHttp.onreadystatechange = function() {
             var title = document.createElement('th');
             title.setAttribute('width',"60%");
             title.setAttribute('style',"background-color : #E5EEFD");
-            title.innerHTML = myDB.Threads[i].title;
+            var mainTitle = document.createElement('a');
+            mainTitle.setAttribute('href','/thread/'+myDB.Threads[i].id);
+            mainTitle.innerHTML = myDB.Threads[i].title;
+            title.appendChild(mainTitle);
             thread.appendChild(title);
             var vote = document.createElement('th');
             vote.setAttribute('width',"10%");
