@@ -1,4 +1,6 @@
 
+var login;
+
 if (document.cookie == '/' || document.cookie == "") {
     document.getElementById('displayUsername').innerHTML = "You are not login!";
     document.getElementById('switchNavTab').innerHTML= '<li><a href="./views/login.html">Login</a></li><li><a href="./views/signup.html">Sign Up</a></li>';
@@ -11,10 +13,10 @@ else {
       //console.log("username is = " + txt[1].indexOf("username"));
         if (txt[i].indexOf("username") !=-1) name = txt[i];
     }
-    var login = name.split('=')[1];
+    login = name.split('=')[1];
     if (login!=undefined) {
       document.getElementById('displayUsername').innerHTML = 'Welcome ' + login;
-      document.getElementById('switchNavTab').innerHTML= '<li><a href="./views/newpost.html">Create new post</a></li><li><a href="./views/myinfo.html">My info</a></li><li><a href="/logout">Log out</a></li>';
+      document.getElementById('switchNavTab').innerHTML= '<li><a href="./views/myinfo.html">My info</a></li><li><a href="/logout">Log out</a></li>';
     } else {
       document.getElementById('displayUsername').innerHTML = "You are not login!";
       document.getElementById('switchNavTab').innerHTML= '<li><a href="./views/login.html">Login</a></li><li><a href="./views/signup.html">Sign Up</a></li>';
@@ -48,14 +50,12 @@ xmlHttp.onreadystatechange = function() {
         var title = document.createElement('tr');
         var inner = document.createElement('td');
         inner.innerHTML ='<b>' + myDB.Threads[index].title + '</b>';
-        inner.setAttribute('style','border-bottom:1pt solid black');
         title.appendChild(inner);
         document.getElementById("displayThread").appendChild(title);
 
         var entry = document.createElement('tr');
         var inner = document.createElement('textarea');
         inner.innerHTML =myDB.Threads[index].entry;
-        inner.setAttribute('style','border-bottom:1pt solid black');
         inner.setAttribute('cols',"145");
         inner.setAttribute('rows',"10");
         inner.setAttribute('readonly','readonly');
@@ -83,6 +83,28 @@ xmlHttp.onreadystatechange = function() {
         feature.appendChild(comments);
         tabFeature.appendChild(feature);
         document.getElementById("displayThread").appendChild(tabFeature);
+
+        var nowUser = document.createElement('p');
+        nowUser.innerHTML = "<br> Comment as " + login;
+        document.getElementById("displayThread").appendChild(nowUser);
+
+        var block = document.createElement('div');
+        var commentArea = document.createElement('form');
+        commentArea.setAttribute('method','post');
+        commentArea.setAttribute('action','/comment');
+        var area = document.createElement('textarea');
+        area.setAttribute('cols',"145");
+        area.setAttribute('rows',"5");
+        area.setAttribute('placeholder','What are your thoughts ?')
+        commentArea.appendChild(area);
+        var postButton = document.createElement('button');
+        postButton.setAttribute('type','submit');
+        postButton.setAttribute('class','btn btn-primary');
+        postButton.setAttribute('style','float: right');
+        postButton.innerHTML = "COMMENT";
+        commentArea.appendChild(postButton);
+        block.appendChild(commentArea);
+        document.getElementById("displayThread").appendChild(block);
     }
 };
 
