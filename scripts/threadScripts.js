@@ -91,7 +91,6 @@ xmlHttp.onreadystatechange = function() {
         var block = document.createElement('div');
         var commentArea = document.createElement('form');
         commentArea.setAttribute('method','post');
-        commentArea.setAttribute('action','/comment');
         var area = document.createElement('textarea');
         area.setAttribute('cols',"145");
         area.setAttribute('rows',"5");
