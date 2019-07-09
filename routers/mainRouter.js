@@ -34,6 +34,8 @@ class Router {
         }
       }
       else if (req.method == 'POST') {
+          var tmp = req.url.split('/')[1];
+          console.log(tmp);
           if (fileUrl == './views/signup.html') {
               var reg = require('./signup');
               reg.Signup(req,res);
@@ -45,6 +47,10 @@ class Router {
           else if (fileUrl == './views/newpost.html') {
               var post = require('./thread');
               post.createThread(req,res);
+          }
+          else if (tmp == 'thread') {
+              var post = require('./thread');
+              post.addComment(req,res);
           }
       }
       else {

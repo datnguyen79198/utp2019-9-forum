@@ -84,26 +84,34 @@ xmlHttp.onreadystatechange = function() {
         tabFeature.appendChild(feature);
         document.getElementById("displayThread").appendChild(tabFeature);
 
-        var nowUser = document.createElement('p');
-        nowUser.innerHTML = "<br> Comment as " + login;
-        document.getElementById("displayThread").appendChild(nowUser);
+        if (login!=undefined) {
+            var nowUser = document.createElement('p');
+            nowUser.innerHTML = "<br> Comment as " + login;
+            document.getElementById("displayThread").appendChild(nowUser);
 
-        var block = document.createElement('div');
-        var commentArea = document.createElement('form');
-        commentArea.setAttribute('method','post');
-        var area = document.createElement('textarea');
-        area.setAttribute('cols',"145");
-        area.setAttribute('rows',"5");
-        area.setAttribute('placeholder','What are your thoughts ?')
-        commentArea.appendChild(area);
-        var postButton = document.createElement('button');
-        postButton.setAttribute('type','submit');
-        postButton.setAttribute('class','btn btn-primary');
-        postButton.setAttribute('style','float: right');
-        postButton.innerHTML = "COMMENT";
-        commentArea.appendChild(postButton);
-        block.appendChild(commentArea);
-        document.getElementById("displayThread").appendChild(block);
+            var block = document.createElement('div');
+            var commentArea = document.createElement('form');
+            commentArea.setAttribute('method','post');
+            var area = document.createElement('textarea');
+            area.setAttribute('cols',"145");
+            area.setAttribute('rows',"5");
+            area.setAttribute('name','replyContent');
+            area.setAttribute('placeholder','What are your thoughts ?')
+            commentArea.appendChild(area);
+            var author = document.createElement('input');
+            author.setAttribute('type','hidden');
+            author.setAttribute('name','author');
+            author.setAttribute('value',login);
+            commentArea.appendChild(author);
+            var postButton = document.createElement('button');
+            postButton.setAttribute('type','submit');
+            postButton.setAttribute('class','btn btn-primary');
+            postButton.setAttribute('style','float: right');
+            postButton.innerHTML = "COMMENT";
+            commentArea.appendChild(postButton);
+            block.appendChild(commentArea);
+            document.getElementById("displayThread").appendChild(block);
+        }
     }
 };
 

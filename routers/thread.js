@@ -42,3 +42,14 @@ exports.getThreads = (req,res) => {
       res.end('Something go wrong');
     });
 };
+
+exports.addComment = (req,res) => {
+    var post_id = req.url.split('/')[2];
+    utils.checkBody(req,res).then(result => {
+        db.threads.addReplyToThread(post_id,result.author,result.replyContent).then(result => {
+            console.log("done add comment");
+            var fileUrl = '.'+req;
+            //sendMethod.sendResponse('./views/main.html',res,'text/html',cookie,'/');
+        })
+    });
+}

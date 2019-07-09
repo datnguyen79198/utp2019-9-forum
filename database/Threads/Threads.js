@@ -2,6 +2,14 @@ var fs = require('fs');
 
 var dbPath = __dirname + '/threads.json';
 
+class Comment {
+    constructor(author,content,date) {
+        this.author = author;
+        this.content = content;
+        this.date = date;
+    }
+}
+
 class Thread {
     constructor(id,author,title,entry,tags,date) {
         this.id = id;
@@ -9,8 +17,16 @@ class Thread {
         this.title = title;
         this.entry = entry;
         this.tags = tags;
+        this.comments = [];
         this.date = date;
     }
+}
+
+var get_post = (db, id) => {
+    for (var i = 0; i < db.Threads.length; i++) {
+        if (db.Threads[i].id == id) return i;
+    }
+    return -1
 }
 
 exports.connect = () => {
@@ -67,3 +83,34 @@ exports.getThreads = () => {
         });
     });
 }
+
+exports.addReplyToThread = (id,author,content) => {
+    return new Promise((resolve,reject) => {
+        fs.readFile(dbPath,'utf-8',(err,db) => {
+            if (err) {
+                console.log('Error when request to Users database');
+                reject(err);
+            }
+            else {
+                db = JSON.parse(db);
+                var threadID = get_post(db,id);
+                if (threadID == -1) {
+                    reject('No such this thread');
+                } else {
+                    var newComment = new Comment(author,content,new Date().getTime());
+                    db.Threads[threadID].comments.push(newComment);
+
+                    db_to_json = JSON.stringify(db,'',4);
+                    fs.writeFile(dbPath, db_to_json, 'utf-8', (err) => {
+                        if (err) {
+                            console.log('Error while writing thread.json');
+                            reject(err);
+                        } else {
+                            resolve(true);
+                        }
+                    })
+                }
+            }
+        });
+    });
+};
