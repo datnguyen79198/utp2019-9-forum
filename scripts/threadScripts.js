@@ -23,6 +23,8 @@ else {
     }
 }
 
+var numberOfThread=0;
+
 var xmlHttp = new XMLHttpRequest();
 
 xmlHttp.onreadystatechange = function() {
@@ -32,7 +34,9 @@ xmlHttp.onreadystatechange = function() {
         console.log(thread_id);
         var index;
         for (var i=0;i<Object.keys(myDB.Threads).length;i++)
-          if (myDB.Threads[i].id == thread_id) index = i;
+            if (myDB.Threads[i].id == thread_id) index = i;
+        for (var i=0;i<Object.keys(myDB.Threads).length;i++)
+            if (myDB.Threads[i].author == myDB.Threads[index].author) numberOfThread++;
         var date = document.createElement('tr');
         var timeThread = new Date(myDB.Threads[index].date);
         date.setAttribute('style',"background-color : #0B5FEA; color : white");
@@ -41,7 +45,7 @@ xmlHttp.onreadystatechange = function() {
 
         var author = document.createElement('tr');
         var inner = document.createElement('th');
-        inner.innerHTML = myDB.Threads[index].author;
+        inner.innerHTML = myDB.Threads[index].author + " - " +numberOfThread + " posts";
         inner.setAttribute('style',"background-color : #E5EEFD; color : #0B5FEA");
         inner.setAttribute('height','60');
         author.appendChild(inner);
@@ -64,11 +68,11 @@ xmlHttp.onreadystatechange = function() {
 
         var tabFeature = document.createElement('table');
         var feature = document.createElement('tr');
-        var like = document.createElement('th');
-        like.setAttribute('width','5%');
+        var like = document.createElement('td');
+        like.setAttribute('width','2%');
         like.innerHTML = '<button class="btn"><i class="fa fa-thumbs-up"></i></button>';
         feature.appendChild(like);
-        var dislike = document.createElement('th');
+        var dislike = document.createElement('td');
         dislike.setAttribute('width','5%');
         dislike.innerHTML = '<button class="btn"><i class="fa fa-thumbs-down"></i></button>';
         feature.appendChild(dislike);
@@ -113,11 +117,13 @@ xmlHttp.onreadystatechange = function() {
             document.getElementById("displayThread").appendChild(block);
         }
         for (var i=0;i<Object.keys(myDB.Threads[index].comments).length;i++) {
-            console.log(myDB.Threads[index].comments[i].author);
+            numberOfThread=0;
+            for (var j=0;j<Object.keys(myDB.Threads).length;j++)
+              if (myDB.Threads[j].author == myDB.Threads[index].comments[i].author) numberOfThread++;
             var repliesTable = document.createElement('table');
             repliesTable.setAttribute('width','100%');
             repliesTable.innerHTML = '<tr"><td align = "right" style="vertical-align:top"><button class="btn"><i class="fa fa-arrow-up"></i></button></td>'
-                                +'<th width = "95%">'+myDB.Threads[index].comments[i].author + '</th></tr>'
+                                +'<th width = "95%">'+myDB.Threads[index].comments[i].author + " - " +numberOfThread + " posts" + '</th></tr>'
                                 +'<tr height = "80"><td align = "right" style="vertical-align:top"><button class="btn"><i class="fa fa-arrow-down"></i></button></td> '
                                 +'<th width = "95%" style = "background-color : #E5EEFD; vertical-align:top">'+myDB.Threads[index].comments[i].content + '</th></tr>';
             document.getElementById("displayThread").appendChild(repliesTable);
