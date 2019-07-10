@@ -33,28 +33,34 @@ xmlHttp.onreadystatechange = function() {
             tags.setAttribute('width',"10%");
             tags.innerHTML = myDB.Threads[i].tags;
             thread.appendChild(tags);
+
             var title = document.createElement('th');
             title.setAttribute('width',"60%");
             title.setAttribute('style',"background-color : #E5EEFD");
+
             var mainTitle = document.createElement('a');
             mainTitle.setAttribute('href','/thread/'+myDB.Threads[i].id);
             mainTitle.innerHTML = myDB.Threads[i].title;
             title.appendChild(mainTitle);
             thread.appendChild(title);
+
             var vote = document.createElement('th');
             vote.setAttribute('width',"10%");
             vote.innerHTML = "this is vote";
             thread.appendChild(vote);
+
             var cmt = document.createElement('td');
             cmt.setAttribute('width',"10%");
             cmt.setAttribute('style',"background-color : #E5EEFD");
             cmt.setAttribute('align','center');
             cmt.innerHTML = Object.keys(myDB.Threads[i].comments).length;
             thread.appendChild(cmt);
+
             var author = document.createElement('th');
             author.setAttribute('width',"10%");
             author.innerHTML = myDB.Threads[i].author;
             thread.appendChild(author);
+            thread.setAttribute('height','30');
             document.getElementById("displayThread").appendChild(thread);
         }
     }
