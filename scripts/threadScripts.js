@@ -79,7 +79,7 @@ xmlHttp.onreadystatechange = function() {
         var comments = document.createElement('th');
         comments.setAttribute('width','85%');
         comments.setAttribute('style','text-align: right');
-        comments.innerHTML = '<i class="fa fa-comments"></i>' + " this is comments";
+        comments.innerHTML = '<i class="fa fa-comments"></i>'+' '+Object.keys(myDB.Threads[index].comments).length+ " comments";
         feature.appendChild(comments);
         tabFeature.appendChild(feature);
         document.getElementById("displayThread").appendChild(tabFeature);
@@ -112,16 +112,19 @@ xmlHttp.onreadystatechange = function() {
             block.appendChild(commentArea);
             document.getElementById("displayThread").appendChild(block);
         }
+        for (var i=0;i<Object.keys(myDB.Threads[index].comments).length;i++) {
+            console.log(myDB.Threads[index].comments[i].author);
+            var repliesTable = document.createElement('table');
+            repliesTable.setAttribute('width','100%');
+            repliesTable.innerHTML = '<tr"><td align = "right" style="vertical-align:top"><button class="btn"><i class="fa fa-arrow-up"></i></button></td>'
+                                +'<th width = "95%">'+myDB.Threads[index].comments[i].author + '</th></tr>'
+                                +'<tr height = "80"><td align = "right" style="vertical-align:top"><button class="btn"><i class="fa fa-arrow-down"></i></button></td> '
+                                +'<th width = "95%" style = "background-color : #E5EEFD; vertical-align:top">'+myDB.Threads[index].comments[i].content + '</th></tr>';
+            document.getElementById("displayThread").appendChild(repliesTable);
+        }
 
         document.getElementById("displayThread").appendChild(document.createElement('br'));
         document.getElementById("displayThread").appendChild(document.createElement('br'));
-        var repliesTable = document.createElement('table');
-        repliesTable.setAttribute('width','100%');
-        repliesTable.innerHTML = '<tr"><td align = "right" style="vertical-align:top"><button class="btn"><i class="fa fa-arrow-up"></i></button></td>'
-                                +'<th width = "95%">author</th></tr>'
-                                +'<tr height = "80"><td align = "right" style="vertical-align:top"><button class="btn"><i class="fa fa-arrow-down"></i></button></td> '
-                                +'<th width = "95%" style = "background-color : #E5EEFD">content</th></tr>';
-        document.getElementById("displayThread").appendChild(repliesTable);
     }
 };
 
