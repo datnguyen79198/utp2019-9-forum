@@ -48,8 +48,19 @@ exports.addComment = (req,res) => {
     utils.checkBody(req,res).then(result => {
         db.threads.addReplyToThread(post_id,result.author,result.replyContent).then(result => {
             console.log("done add comment");
-            var fileUrl = '.'+req;
-            //sendMethod.sendResponse('./views/main.html',res,'text/html',cookie,'/');
+            var fileUrl = req.url;
+            res.writeHead(301, {"Location" : fileUrl});
+            res.end();
         })
+        .catch(err => {
+            console.log(err);
+            res.statusCode = 400;
+            res.end('Something go wrong');
+        });
+    },
+    err => {
+      console.log(err);
+      res.statusCode = 400;
+      res.end('Something go wrong');
     });
 }

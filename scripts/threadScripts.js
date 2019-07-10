@@ -112,6 +112,16 @@ xmlHttp.onreadystatechange = function() {
             block.appendChild(commentArea);
             document.getElementById("displayThread").appendChild(block);
         }
+
+        document.getElementById("displayThread").appendChild(document.createElement('br'));
+        document.getElementById("displayThread").appendChild(document.createElement('br'));
+        var repliesTable = document.createElement('table');
+        repliesTable.setAttribute('width','100%');
+        repliesTable.innerHTML = '<tr"><td align = "right" style="vertical-align:top"><button class="btn"><i class="fa fa-arrow-up"></i></button></td>'
+                                +'<th width = "95%">author</th></tr>'
+                                +'<tr height = "80"><td align = "right" style="vertical-align:top"><button class="btn"><i class="fa fa-arrow-down"></i></button></td> '
+                                +'<th width = "95%" style = "background-color : #E5EEFD">content</th></tr>';
+        document.getElementById("displayThread").appendChild(repliesTable);
     }
 };
 
