@@ -45,14 +45,15 @@ xmlHttp.onreadystatechange = function() {
             thread.appendChild(title);
 
             var vote = document.createElement('th');
+            vote.setAttribute('class',"text-center");
             vote.setAttribute('width',"10%");
-            vote.innerHTML = "this is vote";
+            vote.innerHTML = myDB.Threads[i].upVote;
             thread.appendChild(vote);
 
-            var cmt = document.createElement('td');
+            var cmt = document.createElement('th');
             cmt.setAttribute('width',"10%");
             cmt.setAttribute('style',"background-color : #E5EEFD");
-            cmt.setAttribute('align','center');
+            cmt.setAttribute('class',"text-center");
             cmt.innerHTML = Object.keys(myDB.Threads[i].comments).length;
             thread.appendChild(cmt);
 

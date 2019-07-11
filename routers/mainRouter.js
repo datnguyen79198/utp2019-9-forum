@@ -52,6 +52,14 @@ class Router {
               var post = require('./thread');
               post.addComment(req,res);
           }
+          else if (tmp == 'like-post') {
+              var post = require('./thread');
+              post.like(req,res);
+          }
+          else if (tmp == 'dislike-post') {
+              var post = require('./thread');
+              post.dislike(req,res);
+          }
       }
       else {
         res.writeHead(404, {'Content-Type' : 'text/html'});

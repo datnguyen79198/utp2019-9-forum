@@ -64,3 +64,33 @@ exports.addComment = (req,res) => {
       res.end('Something go wrong');
     });
 }
+
+exports.like = (req,res) => {
+    var post_id = req.url.split('/')[2];
+    db.threads.vote(post_id,1).then( result => {
+        console.log("done like comment");
+        var fileUrl = "/thread/"+post_id;
+        res.writeHead(301, {"Location" : fileUrl});
+        res.end();
+    })
+    .catch(err => {
+        console.log(err);
+        res.statusCode = 400;
+        res.end('Something go wrong');
+    });
+}
+
+exports.dislike = (req,res) => {
+    var post_id = req.url.split('/')[2];
+    db.threads.vote(post_id,-1).then( result => {
+        console.log("done dislike comment");
+        var fileUrl = "/thread/"+post_id;
+        res.writeHead(301, {"Location" : fileUrl});
+        res.end();
+    })
+    .catch(err => {
+        console.log(err);
+        res.statusCode = 400;
+        res.end('Something go wrong');
+    });
+}

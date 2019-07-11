@@ -70,15 +70,21 @@ xmlHttp.onreadystatechange = function() {
         var feature = document.createElement('tr');
         var like = document.createElement('td');
         like.setAttribute('width','2%');
-        like.innerHTML = '<button class="btn"><i class="fa fa-thumbs-up"></i></button>';
+        var like_link = "/like-post/"+thread_id;
+        like.innerHTML = '<form method = "post" action = "' + like_link + '">'
+                            + '<button class="btn" type ="submit"><i class="fa fa-thumbs-up"></i></button>'
+                            +'</form>';
         feature.appendChild(like);
         var dislike = document.createElement('td');
         dislike.setAttribute('width','5%');
-        dislike.innerHTML = '<button class="btn"><i class="fa fa-thumbs-down"></i></button>';
+        var dislike_link = "/dislike-post/"+thread_id;
+        dislike.innerHTML = '<form method = "post" action = "' + dislike_link + '">'
+                            + '<button class="btn" type ="submit"><i class="fa fa-thumbs-down"></i></button>'
+                            +'</form>';
         feature.appendChild(dislike);
         var upVote = document.createElement('th');
-        upVote.setAttribute('width','5%');
-        upVote.innerHTML = "this is up vote";
+        upVote.setAttribute('width','10%');
+        upVote.innerHTML = myDB.Threads[index].upVote + ' upvotes';
         feature.appendChild(upVote);
         var comments = document.createElement('th');
         comments.setAttribute('width','85%');
