@@ -30,6 +30,10 @@ class Router {
                 fileUrl = './views/thread.html';
                 filePath = path.resolve(fileUrl);
                 sendMethod.sendResponse(filePath,res,'text/html',null,null);
+            } else if (req.url == "/add-post") {
+                fileUrl = './views/newpost.html';
+                filePath = path.resolve(fileUrl);
+                sendMethod.sendResponse(filePath,res,'text/html',null,null);
             }
         }
       }
@@ -44,7 +48,7 @@ class Router {
               var auth = require('./login');
               auth.Login(req,res);
           }
-          else if (fileUrl == './views/newpost.html') {
+          else if (req.url == "/add-post") {
               var post = require('./thread');
               post.createThread(req,res);
           }
