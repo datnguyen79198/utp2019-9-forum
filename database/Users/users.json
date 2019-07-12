@@ -1,14 +1,16 @@
 {
     "Users": [
         {
-            "username": "datdat",
-            "password": "dat",
-            "email": "dat"
-        },
-        {
             "username": "dat1",
             "password": "dat",
-            "email": "dat"
+            "email": "dat",
+            "date": 1562951856678
+        },
+        {
+            "username": "dat2",
+            "password": "dat",
+            "email": "dat",
+            "date": 1562951974260
         }
     ]
 }

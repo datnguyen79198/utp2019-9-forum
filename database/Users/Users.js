@@ -3,10 +3,11 @@ var fs = require('fs');
 var dbPath = __dirname + '/users.json';
 
 class User {
-    constructor(username,password,email) {
+    constructor(username,password,email,date) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.date = date;
     }
 }
 
@@ -43,7 +44,7 @@ exports.addUser = (username,password,email) => {
                 db = JSON.parse(db);
 
                 if (!findUser(db,username)) {
-                    var newUser = new User(username,password,email);
+                    var newUser = new User(username,password,email,new Date().getTime());
                     db.Users.push(newUser);
                     db_to_json = JSON.stringify(db,'',4);
                     fs.writeFile(dbPath, db_to_json, 'utf-8', (err) => {
@@ -83,3 +84,17 @@ exports.getUser = (username,password) => {
         });
     });
 };
+
+exports.getAllUsers = () => {
+    return new Promise((resolve,reject) => {
+        fs.readFile(dbPath,'utf-8',(err,db) => {
+            if (err) {
+              console.log('Error when request to Users database');
+              reject(err);
+            } else {
+                db = JSON.parse(db);
+                resolve(db);
+            }
+        });
+    });
+}

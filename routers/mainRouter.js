@@ -26,12 +26,21 @@ class Router {
             else if (req.url == '/threads') {
                 var post = require('./thread');
                 post.getThreads(req,res);
-            } else if (tmp == 'thread') {
+            }
+            else if (req.url == '/users') {
+                var user = require('./user');
+                user.getAllUsers(req,res);
+            }
+            else if (tmp == 'thread') {
                 fileUrl = './views/thread.html';
                 filePath = path.resolve(fileUrl);
                 sendMethod.sendResponse(filePath,res,'text/html',null,null);
             } else if (req.url == "/add-post") {
                 fileUrl = './views/newpost.html';
+                filePath = path.resolve(fileUrl);
+                sendMethod.sendResponse(filePath,res,'text/html',null,null);
+            } else if (req.url == "/info") {
+                fileUrl = './views/myinfo.html';
                 filePath = path.resolve(fileUrl);
                 sendMethod.sendResponse(filePath,res,'text/html',null,null);
             }
