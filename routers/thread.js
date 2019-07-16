@@ -94,3 +94,17 @@ exports.dislike = (req,res) => {
         res.end('Something go wrong');
     });
 }
+
+exports.filter = (req,res) => {
+    utils.checkBody(req,res).then(result => {
+        var fileUrl = "/filter/"+result.tags;
+        console.log(fileUrl);
+        res.writeHead(301, {"Location" : fileUrl});
+        res.end();
+      })
+    .catch(err => {
+        console.log(err);
+        res.statusCode = 400;
+        res.end('Something go wrong');
+    });
+}

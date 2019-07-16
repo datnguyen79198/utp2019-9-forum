@@ -61,6 +61,10 @@ class Router {
               var post = require('./thread');
               post.createThread(req,res);
           }
+          else if (req.url == "/filter") {
+              var post = require('./thread');
+              post.filter(req,res);
+          }
           else if (tmp == 'thread') {
               var post = require('./thread');
               post.addComment(req,res);
