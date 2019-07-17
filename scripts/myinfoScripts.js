@@ -115,7 +115,11 @@ xmlHttp.onreadystatechange = function() {
 
             var tags = document.createElement('th');
             tags.setAttribute('width',"10%");
-            tags.innerHTML = myDB.Threads[i].tags;
+            var inner = document.createElement('a');
+            var tag = myDB.Threads[i].tags.substr(1);
+            inner.setAttribute('href','/filter/tag='+tag);
+            inner.innerHTML = myDB.Threads[i].tags;
+            tags.appendChild(inner);
             thread.appendChild(tags);
 
             var title = document.createElement('th');
