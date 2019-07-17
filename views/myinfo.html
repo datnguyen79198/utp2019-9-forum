@@ -33,6 +33,14 @@
             <!-- TODO -->
             <!-- I will set 2 status of page when login and not login -->
             <a class="navbar-brand" href="#" style = "margin-left: 1%" id = "displayUsername"></a>
+
+            <form class="navbar-form navbar-left" role="search" method = "post" action="/filter">
+              <div class="form-group">
+                <input type="text" name="tags" class="form-control" placeholder="Search">
+              </div>
+              <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
+            </form>
+
             <div id = "navbar" class = "navbar-right">
                 <ul class = "nav navbar-nav" id = "switchNavTab">
                 </ul>
