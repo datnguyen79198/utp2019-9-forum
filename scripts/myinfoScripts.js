@@ -64,10 +64,14 @@ xmlHttp.onreadystatechange = function() {
         none.appendChild(inner);
         document.getElementById("displayThread").appendChild(none);
 
+        var numberOfThread=0;
+        for (var i=0;i<Object.keys(myDB.Threads).length;i++) numberOfThread+=(myDB.Threads[i].author == login);
+
+
         var title = document.createElement('tr');
         var inner = document.createElement('th');
         inner.setAttribute('width',"100%");
-        inner.innerHTML = 'All posts - ' + Object.keys(myDB.Threads).length + ' posts';
+        inner.innerHTML = 'All posts - ' + numberOfThread + ' posts';
         inner.setAttribute('style',"background-color : #E5EEFD");
         title.appendChild(inner);
         document.getElementById("displayThread").appendChild(title);
