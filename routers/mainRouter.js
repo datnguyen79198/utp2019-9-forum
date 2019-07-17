@@ -35,11 +35,18 @@ class Router {
                 fileUrl = './views/thread.html';
                 filePath = path.resolve(fileUrl);
                 sendMethod.sendResponse(filePath,res,'text/html',null,null);
-            } else if (req.url == "/add-post") {
+            }
+            else if (tmp == 'filter') {
+                fileUrl = './views/filter.html';
+                filePath = path.resolve(fileUrl);
+                sendMethod.sendResponse(filePath,res,'text/html',null,null);
+            }
+            else if (req.url == "/add-post") {
                 fileUrl = './views/newpost.html';
                 filePath = path.resolve(fileUrl);
                 sendMethod.sendResponse(filePath,res,'text/html',null,null);
-            } else if (req.url == "/info") {
+            }
+            else if (req.url == "/info") {
                 fileUrl = './views/myinfo.html';
                 filePath = path.resolve(fileUrl);
                 sendMethod.sendResponse(filePath,res,'text/html',null,null);

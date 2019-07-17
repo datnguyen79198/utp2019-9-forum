@@ -97,8 +97,8 @@ exports.dislike = (req,res) => {
 
 exports.filter = (req,res) => {
     utils.checkBody(req,res).then(result => {
-        var fileUrl = "/filter/"+result.tags;
-        console.log(fileUrl);
+        var tag = result.tags.substr(1);
+        var fileUrl = "/filter/tag="+tag;
         res.writeHead(301, {"Location" : fileUrl});
         res.end();
       })
