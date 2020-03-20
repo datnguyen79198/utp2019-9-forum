@@ -2,6 +2,8 @@
 # ROZ forum
 Форум на JavaScript (Node.js)
 
+Simple forum create by Javascript without any library or framework (¯\_(ツ)_/¯)
+
 # Состав группы
 - Нгуен Тхань Дат (https://github.com/datnguyen79198) 
 
